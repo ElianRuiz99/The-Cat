@@ -1,6 +1,7 @@
 const API_KEY = 'f63c326e-c24b-40bb-a2b2-bbc720a11f5a';
 const URL_BASE_RANDOM = `https://api.thecatapi.com/v1/images/search?limit=3&api_key=${API_KEY}`;
 const URL_BASE_FAVORITE= `https://api.thecatapi.com/v1/favourites?limit=10&api_key=${API_KEY}`;
+const URL_BASE_DELETE= (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=${API_KEY}`;
 
 const spanError = document.getElementById('errorCat');
 //**Peticion a la api con fetch
@@ -61,7 +62,7 @@ button.addEventListener('click', reload)
 reload();
 
 
-//**Peticion con Async Await favoritos
+//**Peticion con Async Await traer favoritos
 const getFavoriteCat = async() => {
     const response = await fetch(URL_BASE_FAVORITE);
     const data = await response.json();
@@ -83,6 +84,7 @@ const getFavoriteCat = async() => {
 
             const btn = document.createElement('button');
             btn.className = 'secondary-button';
+            btn.onclick = () => deleteFavoriteCat(element.id);
 
             const btnText = document.createTextNode('Out cat in favorite');
 
@@ -120,8 +122,22 @@ const saveFavoriteCat = async(id) =>{
 
     if( res.status != 200){
         spanError.innerHTML = `Hubo un Error:  ${data.status} ${data.message}`;
+    }else{
+        console.log('Cat Was Saved in Favorites');
     }
-
 }
+
+//funcion para eliminar de favoritos
+const deleteFavoriteCat = async(id) =>{
+    const res = await fetch( URL_BASE_DELETE(id) , {
+        method: 'DELETE',
+    });
+
+    if( res.status != 200){
+        spanError.innerHTML = `Hubo un Error:  ${data.status} ${data.message}`;
+    }else{
+        console.log('Cat Was deleted from Favorites')
+    }
+} 
 
 
