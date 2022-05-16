@@ -1,6 +1,6 @@
 const API_KEY = 'f63c326e-c24b-40bb-a2b2-bbc720a11f5a';
 const URL_BASE_RANDOM = `https://api.thecatapi.com/v1/images/search?limit=3&api_key=${API_KEY}`;
-const URL_BASE_FAVORITE= `https://api.thecatapi.com/v1/favourites?limit=10&api_key=${API_KEY}`;
+const URL_BASE_FAVORITE= `https://api.thecatapi.com/v1/favourites?api_key=${API_KEY}`;
 const URL_BASE_DELETE= (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=${API_KEY}`;
 
 const spanError = document.getElementById('errorCat');
@@ -72,8 +72,11 @@ const getFavoriteCat = async() => {
     if( response.status != 200){
         spanError.innerHTML = `Hubo un Error:  ${data.status} ${data.message}`;
     }else{
+
+        const section = document.querySelector('.container-favorite-cats');
+        section.innerHTML = "";
+
         data.forEach(element => {
-            const section = document.querySelector('.container-favorite-cats');
 
             const divContainer = document.createElement('div');
             divContainer.className = 'container-img';
@@ -124,6 +127,7 @@ const saveFavoriteCat = async(id) =>{
         spanError.innerHTML = `Hubo un Error:  ${data.status} ${data.message}`;
     }else{
         console.log('Cat Was Saved in Favorites');
+        getFavoriteCat();
     }
 }
 
@@ -136,7 +140,8 @@ const deleteFavoriteCat = async(id) =>{
     if( res.status != 200){
         spanError.innerHTML = `Hubo un Error:  ${data.status} ${data.message}`;
     }else{
-        console.log('Cat Was deleted from Favorites')
+        console.log('Cat Was deleted from Favorites');
+        getFavoriteCat();
     }
 } 
 
