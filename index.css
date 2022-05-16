@@ -27,20 +27,21 @@ header p{
 }
 
 /* Random-cats Style */
-.random-cats{
+.random-cats, .favorite-cats{
     display: grid;
     place-content: center;
     background-color: #e2e2e2;
     margin-left: 8%;
     margin-right: 8%;
     margin-top: 10px;
+    margin-bottom: 30px;
     border-radius: 10px;
 }
-.random-cats h2{
+.random-cats h2, .favorite-cats h2{
     margin-left: auto;
     margin-right: auto;
 }
-.container-cats{
+.container-cats, .container-favorite-cats{
     display: grid;
     grid-template-columns: repeat(3, 300px);
     gap: 10px;
@@ -91,10 +92,10 @@ header p{
 /* Media  */
 @media (max-width: 1000px){
     .container-img img{
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
     }
-    .container-cats{
+    .container-cats, .container-favorite-cats{
         grid-template-columns: repeat(auto-fill, 200px);
         align-content: center;
     }
