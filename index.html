@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <title>Cats</title>
+</head>
+<body>
+    <header>
+        <h1>App Cats</h1>
+        <p>For this application, "The Cat API" was used.</p>
+    </header>
+    <span id="errorCat"></span>
+    <section class="random-cats">
+        <h2>Ramdom Cats</h2>
+        <button class="reload-cat secondary-button">Reload Cat</button>
+        <div class="container-cats">
+            <div class="container-img">
+                <img class="img-cat1" alt="photo of ramdom cat">
+                <button onclick="saveFavoriteCat()" class="secondary-button">Save cat in favorite</button>
+            </div>
+
+            <div class="container-img">
+                <img class="img-cat2" alt="photo of ramdom cat">
+                <button onclick="saveFavoriteCat()" class="secondary-button">Save cat in favorite</button>
+            </div>
+
+            <div class="container-img">
+                <img class="img-cat3" alt="photo of ramdom cat">
+                <button onclick="saveFavoriteCat()" class="secondary-button">Save cat in favorite</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="favorites-cats">
+        <h2>Favorite Cats</h2>
+        <div class="container-img">
+            <img class="img-cat1" alt="photo of ramdom cat">
+            <button class="secondary-button">Out cat in favorite</button>
+        </div>
+    </section>
+    
+
+    <script src="./main.js"></script>
+</body>
+</html>
