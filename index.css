@@ -27,7 +27,7 @@ header p{
 }
 
 /* Random-cats Style */
-.random-cats, .favorite-cats{
+.random-cats, .favorite-cats, .uploadingCat{
     display: grid;
     place-content: center;
     background-color: #e2e2e2;
@@ -73,13 +73,24 @@ header p{
     align-items: center;
 }
 
+#formCat{
+    display: flex;
+    flex-direction: column;
+}
+
+#formCat input, button{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
 
 /* Button Style */
 .secondary-button{
     width: 200px;
     height: 40px;
     margin-top: 4px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     background-color: #eaffa8;
     border: none;
     border-radius: 12px;

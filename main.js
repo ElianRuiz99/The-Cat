@@ -1,7 +1,8 @@
 const API_KEY = 'f63c326e-c24b-40bb-a2b2-bbc720a11f5a';
-const URL_BASE_RANDOM = `https://api.thecatapi.com/v1/images/search?limit=3&api_key=${API_KEY}`;
-const URL_BASE_FAVORITE= `https://api.thecatapi.com/v1/favourites?api_key=${API_KEY}`;
+const URL_BASE_RANDOM = `https://api.thecatapi.com/v1/images/search?limit=3`;
+const URL_BASE_FAVORITE= `https://api.thecatapi.com/v1/favourites`;
 const URL_BASE_DELETE= (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=${API_KEY}`;
+const URL_BASE_UPLOAD= `https://api.thecatapi.com/v1/images/upload`;
 
 const spanError = document.getElementById('errorCat');
 //**Peticion a la api con fetch
@@ -64,7 +65,12 @@ reload();
 
 //**Peticion con Async Await traer favoritos
 const getFavoriteCat = async() => {
-    const response = await fetch(URL_BASE_FAVORITE);
+    const response = await fetch(URL_BASE_FAVORITE, {
+        method: 'GET',
+        headers: {
+            'x-api-key': 'f63c326e-c24b-40bb-a2b2-bbc720a11f5a',
+        }
+    });
     const data = await response.json();
     console.log('Favorites')
     console.log(data)
@@ -112,6 +118,7 @@ const saveFavoriteCat = async(id) =>{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'x-api-key': 'f63c326e-c24b-40bb-a2b2-bbc720a11f5a',
         },
         body: JSON.stringify({
             image_id: id,
@@ -144,5 +151,29 @@ const deleteFavoriteCat = async(id) =>{
         getFavoriteCat();
     }
 } 
+
+//Subir fotos
+const uploadingImageCat = async() =>{
+    const form = document.getElementById('formCat');
+    const formData = new FormData(form);
+
+    const res = await fetch(URL_BASE_UPLOAD, {
+        method: 'POST',
+        headers: {
+            // 'Content-Type': 'multipart/formData',
+            'x-api-key': 'f63c326e-c24b-40bb-a2b2-bbc720a11f5a',
+        },
+        body: formData
+    });
+
+    const data = await res.json();
+
+    if( res.status != 200){
+        spanError.innerHTML = `Hubo un Error:  ${data.status} ${data.message}`;
+        console.log({data})
+    }else{
+        console.log('The image was Uploaded');
+    }
+}
 
 
